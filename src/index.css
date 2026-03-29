@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@import "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Outfit:wght@300;400;600&family=JetBrains+Mono:wght@100..800&display=swap";
+
+@theme {
+  --font-mystic: "Cinzel", serif;
+  --font-tech: "Outfit", sans-serif;
+  --font-code: "JetBrains Mono", monospace;
+
+  --color-gold: #C5A059;
+  --color-vault-bg: #0A0A0B;
+  --color-vault-card: #080c16;
+
+  --blur-2xl: 40px;
+}
+
+@layer base {
+  body {
+    @apply bg-vault-bg text-[#f8f9fa] antialiased overflow-x-hidden;
+    cursor: none !important;
+  }
+
+  * {
+    cursor: none !important;
+  }
+}
+
+@layer components {
+  .vignette-overlay {
+    @apply pointer-events-none fixed inset-0 z-10;
+    background: radial-gradient(circle, transparent 30%, #0a0a0b 100%);
+  }
+
+  .mystic-text {
+    @apply font-mystic;
+  }
+
+  .tech-text {
+    @apply font-tech;
+  }
+
+  .code-text {
+    @apply font-code;
+  }
+}
+
+/* Atmospheric Animations */
+@keyframes fogDrift {
+  0% { opacity: 0.15; transform: translate(-10%) scaleX(1.2); }
+  50% { opacity: 0.25; transform: translate(5%) scaleX(1.3); }
+  100% { opacity: 0.15; transform: translate(-10%) scaleX(1.2); }
+}
+
+@keyframes fogDriftReverse {
+  0% { opacity: 0.1; transform: translate(10%) scaleX(1.3); }
+  50% { opacity: 0.2; transform: translate(-8%) scaleX(1.2); }
+  100% { opacity: 0.1; transform: translate(10%) scaleX(1.3); }
+}
+
+.celestial-fog {
+  @apply pointer-events-none fixed bottom-0 left-[-10%] z-[11] h-[35vh] w-[120%];
+}
+
+.celestial-fog-layer-1 {
+  @apply absolute inset-0;
+  background: linear-gradient(transparent 0%, rgba(197, 160, 89, 0.03) 70%, rgba(10, 10, 11, 0.6) 100%);
+  animation: fogDrift 25s ease-in-out infinite;
+}
+
+.celestial-fog-layer-2 {
+  @apply absolute inset-0;
+  background: linear-gradient(transparent 0%, rgba(197, 160, 89, 0.02) 60%, rgba(10, 10, 11, 0.4) 100%);
+  animation: fogDriftReverse 35s ease-in-out infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(197, 160, 89, 0.05);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.3);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.6);
+}
